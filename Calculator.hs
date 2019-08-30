@@ -149,7 +149,10 @@ simplifyZero z = z
 
 peephole :: (Expr -> Expr) -> Expr -> Expr
 -- <FILL-IN>
-peephole = question "[8 pts] COMPLETE THE DEFINITION"
+peephole v (Op Plus x y) = v (Op Plus (v x) (v y))
+--peephole v (Op Plus (Lit 0) y) = (v y)
+--peephole v (Op Plus x (Lit 0)) = (v x)
+peephole v z = z
 -- </FILL-IN>
 
 -------------------------------------------------------------------
