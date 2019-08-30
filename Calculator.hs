@@ -149,9 +149,10 @@ simplifyZero z = z
 
 peephole :: (Expr -> Expr) -> Expr -> Expr
 -- <FILL-IN>
-peephole v (Op Plus x y) = v (Op Plus (v x) (v y))
---peephole v (Op Plus (Lit 0) y) = (v y)
---peephole v (Op Plus x (Lit 0)) = (v x)
+--peephole v (Op Plus x y) = peephole v (Op Plus (v x) (v y))
+peephole v (Op Plus (Lit 0) y) = peephole v y
+peephole v (Op Plus x (Lit 0)) = peephole v x
+peephole v (Op Plus x y) = v (Op Plus (peephole v x) (peephole v y))
 peephole v z = z
 -- </FILL-IN>
 
