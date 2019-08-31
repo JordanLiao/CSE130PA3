@@ -207,7 +207,10 @@ type Stack = [Int]
 
 step :: Instr -> Stack -> Maybe Stack
 -- <FILL-IN>
-step = question "[8 pts] COMPLETE THE DEFINITION"
+step (IOp z) stack = case stack of (x:y:xs) -> Just (interp (Op z (Lit x) (Lit y)):xs)
+                                   [x]      -> Nothing
+                                   []      -> Nothing
+step (IPush z) stack = Just (z:stack)
 -- </FILL-IN>
 
 -- We should also tie this together, and write a function that
@@ -218,7 +221,7 @@ step = question "[8 pts] COMPLETE THE DEFINITION"
 
 run :: [Instr] -> Stack -> Maybe Stack
 -- <FILL-IN>
-run = question "[12 pts] COMPLETE THE DEFINITION"
+run ins stack = foldM (\a b -> step b a) stack ins
 -- </FILL-IN>
 
 -------------------------------------------------------------------
