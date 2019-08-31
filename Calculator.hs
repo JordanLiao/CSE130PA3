@@ -207,7 +207,7 @@ type Stack = [Int]
 
 step :: Instr -> Stack -> Maybe Stack
 -- <FILL-IN>
-step (IOp z) stack = case stack of (x:y:xs) -> Just (interp (Op z (Lit x) (Lit y)):xs)
+step (IOp z) stack = case stack of (x:y:xs) -> Just (interp (Op z (Lit y) (Lit x)):xs)
                                    [x]      -> Nothing
                                    []      -> Nothing
 step (IPush z) stack = Just (z:stack)
