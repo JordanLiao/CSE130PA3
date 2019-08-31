@@ -242,7 +242,8 @@ run ins stack = foldM (\a b -> step b a) stack ins
 
 compile :: Expr -> [Instr]
 -- <FILL-IN>
-compile = question "[10 pts] COMPLETE THE DEFINITION"
+compile (Lit x) = [IPush x]
+compile (Op x y z) = compile z ++ compile y ++ [(IOp x)]
 -- </FILL-IN>
 
 -- Your compiler is correct if running the instructions produced
